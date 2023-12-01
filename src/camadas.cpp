@@ -50,6 +50,7 @@ std::string Camada::intBitListToString(int *bitList, int listsize) {
     return mensagem;
 }
 
+// Construtor da camada transmissora; transforma a mensagem em uma lista de bits
 CamadaTransmissora::CamadaTransmissora(std::string mensagem) {
     this->mensagem = mensagem;
     this->quadro.tamanhoListaBits = mensagem.size()*8;
@@ -60,7 +61,7 @@ CamadaTransmissora::~CamadaTransmissora() {
     free(this->quadro.listaBits);
 }
 
-// Função que transforma a mensagem em uma lista de bits
+// Método que simula a camada de aplicação transmissora; transforma a mensagem digitada na aplicação em uma lista de bits
 void CamadaTransmissora::CamadaDeAplicacaoTransmissora() {
     stringToIntBitList(this->mensagem, this->quadro.listaBits);
 }
@@ -78,6 +79,7 @@ Quadro CamadaTransmissora::getQuadro() {
     return this->quadro;
 }
 
+// Construtor da CamadaReceptora; copia o quadro para a camada receptora
 CamadaReceptora::CamadaReceptora(Quadro quadro) {
     this->quadro = quadro;
 }
@@ -86,6 +88,7 @@ Quadro CamadaReceptora::getQuadro() {
     return this->quadro;
 }
 
+// Método que simula a camada de enlace de dados receptora; confere se a mensagem recebida está correta usando o algorítmo utilizado no controle de erro
 void CamadaReceptora::CamadaEnlaceDadosReceptora() {
     std::cout << "----------------------------------------------------------" << std::endl;
     std::cout << "[camadas] Quadro codificado recebido: ";
@@ -98,6 +101,7 @@ void CamadaReceptora::CamadaEnlaceDadosReceptora() {
     this->quadro = controleErroReceptora.getQuadroRecebido();
 }
 
+// Funçã́o que simula a camada de aplicação receptora; transforma a lista de bits recebida em uma mensagem
 std::string CamadaReceptora::CamadaDeAplicacaoReceptora() {
     std::string mensagemRecebida = intBitListToString(this->quadro.listaBits, this->quadro.tamanhoListaBits);
 

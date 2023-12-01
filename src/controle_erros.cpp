@@ -4,7 +4,7 @@
 #include "controle_erros.hh"
 #include "camadas.hh"
 
-#define TIPODECONTROLEDEERRO 1
+#define TIPODECONTROLEDEERRO 0
 #define ORDEMPOLINOMIO 32
 
 // Camada de enlace do transmissor
@@ -84,7 +84,7 @@ void divisaoCRC(Quadro *quadro, int *divisor) {
 // Implementa o controle de erro com o algorítmo CRC
 void CamadaEnlaceDadosTransmissoraControleDeErro::CamadaEnlaceDadosTransmissoraControleDeErroCRC(Quadro *quadro) {
     std::size_t tamanhoDivisor = ORDEMPOLINOMIO + 1;
-    int divisor[tamanhoDivisor] = {1,0,0,0,0,0,1,0,0,1,1,0,0,0,0,0,1,0,0,0,1,1,1,0,1,1,0,1,1,0,1,1,1};
+    int divisor[] = {1,0,0,0,0,0,1,0,0,1,1,0,0,0,0,0,1,0,0,0,1,1,1,0,1,1,0,1,1,0,1,1,1};
 
     std::size_t novoTamanho =  quadro->tamanhoListaBits + ORDEMPOLINOMIO;
     Quadro quadroCodificado;
@@ -144,6 +144,7 @@ CamadaEnlaceDadosReceptoraControleDeErro::CamadaEnlaceDadosReceptoraControleDeEr
     }
 }
 
+// Verificação de erros usando o algorítmo de paridade par
 void CamadaEnlaceDadosReceptoraControleDeErro::CamadaEnlaceDadosReceptoraControleDeErroBitParidadePar(Quadro quadro) {
     int numBitsUm = numeroBitsUm(quadro.listaBits, quadro.tamanhoListaBits);
 
@@ -160,6 +161,7 @@ void CamadaEnlaceDadosReceptoraControleDeErro::CamadaEnlaceDadosReceptoraControl
         std::cout << "----------------------------------------------------------" << std::endl;
 }
 
+// Verificação de erros usando o algorítmo de paridade ímpar
 void CamadaEnlaceDadosReceptoraControleDeErro::CamadaEnlaceDadosReceptoraControleDeErroBitParidadeImpar(Quadro quadro) {
     int numBitsUm = numeroBitsUm(quadro.listaBits, quadro.tamanhoListaBits);
 
@@ -176,9 +178,10 @@ void CamadaEnlaceDadosReceptoraControleDeErro::CamadaEnlaceDadosReceptoraControl
         std::cout << "----------------------------------------------------------" << std::endl;
 }
 
+// Verificação de erros usando o algorítmo CRC-32
 void CamadaEnlaceDadosReceptoraControleDeErro::CamadaEnlaceDadosReceptoraControleDeErroCRC(Quadro quadro) {
     std::size_t tamanhoDivisor = ORDEMPOLINOMIO + 1;
-    int divisor[tamanhoDivisor] = {1,0,0,0,0,0,1,0,0,1,1,0,0,0,0,0,1,0,0,0,1,1,1,0,1,1,0,1,1,0,1,1,1};
+    int divisor[] = {1,0,0,0,0,0,1,0,0,1,1,0,0,0,0,0,1,0,0,0,1,1,1,0,1,1,0,1,1,0,1,1,1};
 
     divisaoCRC(&quadro, divisor);
 

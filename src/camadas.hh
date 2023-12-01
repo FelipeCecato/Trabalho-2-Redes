@@ -4,6 +4,7 @@
 #include <iostream>
 #include "quadro.hh"
 
+// Classe genérica de camada
 class Camada {
     public:
         Camada();
@@ -13,11 +14,11 @@ class Camada {
         std::string bitIntListToBitStringList(std::string mensagem);
 };
 
+// Classe que abrange as camadas transmissoras de aplicação e enlace
 class CamadaTransmissora : public Camada {
     private:
         Quadro quadro;
         std::string mensagem;
-
     public:
         CamadaTransmissora(std::string mensagem);
         ~CamadaTransmissora();
@@ -26,10 +27,10 @@ class CamadaTransmissora : public Camada {
         Quadro getQuadro();
 };
 
+// Classe que abrange as camadas receptoras de aplicação e enlace
 class CamadaReceptora : public Camada {
     private:
         Quadro quadro;
-    
     public:
         CamadaReceptora(Quadro quadro);
         ~CamadaReceptora();

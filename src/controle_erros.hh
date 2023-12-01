@@ -4,6 +4,7 @@
 #include <iostream>
 #include "quadro.hh"
 
+// Classe que abrange a codificação da mensagem do transmissor
 class CamadaEnlaceDadosTransmissoraControleDeErro {
     public:
         CamadaEnlaceDadosTransmissoraControleDeErro(Quadro *quadro);
@@ -12,6 +13,7 @@ class CamadaEnlaceDadosTransmissoraControleDeErro {
         void CamadaEnlaceDadosTransmissoraControleDeErroBitParidadeImpar(Quadro *quadro);
 };
 
+// Classe que abrange a detecção de erros do receptor
 class CamadaEnlaceDadosReceptoraControleDeErro {
     private:
         Quadro quadroRecebido;
