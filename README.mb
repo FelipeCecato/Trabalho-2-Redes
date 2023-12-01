@@ -6,7 +6,7 @@ Alunos:
 * Caio Oliveira Godinho 
 * Felipe Cecato 
  
-A distribuição Linux utilizada foi Fedora release 37 (Thirty Seven).
+ A distribuição Linux utilizada foi Fedora release 37 (Thirty Seven).
 
-Para compilar o código, é necessário executar o comando "make all" e, em seguida, exucutar o "make run". Além disso, é possível apagar os arquivos do programa utilizando o comando "make clean".
-No arquivo controle_erros.cpp está um define no início do arquivo que indica o tipo de algoritmo de controle de erro utilizado.
+ Para compilar o código, é necessário executar o comando "make all" e, em seguida, exucutar o "make run". Além disso, é possível apagar os arquivos do programa utilizando o comando "make clean".
+ No arquivo controle_erros.cpp está um define no início do arquivo que indica o tipo de algoritmo de controle de erro utilizado.
